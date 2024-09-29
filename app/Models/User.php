@@ -18,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -43,5 +44,26 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+    function isMod(): bool
+    {
+        return $this->role === 'mod';
+    }
+    function isUser(): bool
+    {
+        return $this->role === 'user';
+    }
+    function isActive(): bool
+    {
+        return $this->active;
+    }
+    function isNotActive(): bool
+    {
+        return !$this->active;
     }
 }
